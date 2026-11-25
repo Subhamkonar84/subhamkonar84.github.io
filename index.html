@@ -292,27 +292,47 @@
   @media (max-width:900px){ .proj-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:620px){ .proj-grid{ grid-template-columns:1fr; } }
   .proj-card{
-    background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px;
+    background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:0;
     position:relative; overflow:hidden; transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    display:flex; flex-direction:column;
   }
   .proj-card::before{
     content:''; position:absolute; inset:0; opacity:0; background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
-    transition:opacity .4s ease; pointer-events:none;
+    transition:opacity .4s ease; pointer-events:none; z-index:2;
   }
   .proj-card:hover::before{ opacity:1; }
   .proj-card:hover{ transform:translateY(-6px); border-color:var(--accent); box-shadow:var(--shadow); }
+  .proj-card:hover .proj-visual svg{ transform:scale(1.06); }
+  .proj-visual{
+    height:150px; overflow:hidden; background:var(--surface-2); border-bottom:1px solid var(--border); flex:none;
+  }
+  .proj-visual svg{ width:100%; height:100%; display:block; transition:transform .5s ease; }
+  .proj-body{ padding:0 26px 26px; position:relative; flex:1; display:flex; flex-direction:column; }
   .proj-icon{
     width:46px; height:46px; border-radius:12px; background:var(--grad); display:flex; align-items:center;
-    justify-content:center; margin-bottom:18px; color:#06101f;
+    justify-content:center; margin:-23px 0 18px; color:#06101f; position:relative; z-index:1;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,.45);
   }
   .proj-icon svg{ width:22px; height:22px; }
   .proj-card h3{ font-size:1.15rem; margin:0 0 10px; }
   .proj-card p{ color:var(--text-dim); font-size:.93rem; margin-bottom:16px; }
-  .tags{ display:flex; flex-wrap:wrap; gap:7px; }
+  .tags{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:4px; }
   .tags span{
     font-size:.74rem; font-weight:600; color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent);
     padding:4px 10px; border-radius:999px; border:1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   }
+  .proj-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:.86rem; font-weight:600; color:var(--accent);
+    text-decoration:none; border-top:1px solid var(--border); margin-top:18px; padding-top:16px;
+  }
+  .proj-link svg{ width:14px; height:14px; transition:transform .25s ease; }
+  .proj-link:hover svg{ transform:translate(3px,-3px); }
+  .cert-item a.cert-link{ color:var(--text); text-decoration:none; }
+  .cert-item a.cert-link:hover{ color:var(--accent); }
+  .cert-item h4{ display:flex; align-items:center; gap:6px; }
+  .cert-item h4 svg{ width:12px; height:12px; opacity:.6; }
+  .ach-card a{ color:var(--accent); text-decoration:none; border-bottom:1px dashed color-mix(in srgb, var(--accent) 50%, transparent); }
+  .ach-card a:hover{ border-bottom-style:solid; }
 
   /* ---------- Skills ---------- */
   .skill-groups{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
@@ -549,24 +569,82 @@
       <div class="proj-grid">
 
         <div class="proj-card reveal">
-          <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z"/></svg></div>
-          <h3>Equity Financial Document Analyser</h3>
-          <p>A RAG system for B2B financial-document analysis, built and scaled with distributed computing and a vector database to meet enterprise reliability and due-diligence standards.</p>
-          <div class="tags"><span>RAG</span><span>Vector DB</span><span>Distributed Systems</span><span>Python</span></div>
+          <div class="proj-visual">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--accent-2)"/></linearGradient></defs>
+              <rect width="400" height="150" fill="url(#pg1)" opacity="0.1"/>
+              <path d="M60 112 L140 72 L210 96 L300 50 L350 76" stroke="url(#pg1)" stroke-width="1.5" fill="none" opacity="0.7"/>
+              <g fill="url(#pg1)">
+                <circle cx="60" cy="112" r="5"/><circle cx="140" cy="72" r="5"/><circle cx="210" cy="96" r="5"/><circle cx="300" cy="50" r="5"/><circle cx="350" cy="76" r="5"/>
+              </g>
+              <g transform="translate(26,24)">
+                <rect x="0" y="0" width="64" height="86" rx="7" fill="var(--surface)" stroke="url(#pg1)" stroke-width="1.5"/>
+                <line x1="12" y1="18" x2="52" y2="18" stroke="url(#pg1)" stroke-width="2.5"/>
+                <line x1="12" y1="32" x2="52" y2="32" stroke="url(#pg1)" stroke-width="2.5" opacity=".6"/>
+                <line x1="12" y1="46" x2="40" y2="46" stroke="url(#pg1)" stroke-width="2.5" opacity=".6"/>
+                <line x1="12" y1="62" x2="46" y2="62" stroke="url(#pg1)" stroke-width="2.5" opacity=".35"/>
+              </g>
+            </svg>
+          </div>
+          <div class="proj-body">
+            <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z"/></svg></div>
+            <h3>Equity Financial Document Analyser</h3>
+            <p>A RAG system for B2B financial-document analysis, built and scaled with distributed computing and a vector database to meet enterprise reliability and due-diligence standards.</p>
+            <div class="tags"><span>RAG</span><span>Vector DB</span><span>Distributed Systems</span><span>Python</span></div>
+          </div>
         </div>
 
         <div class="proj-card reveal">
-          <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 12v3"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></div>
-          <h3>Camera-Based Automated Billing</h3>
-          <p>An automated visual-checkout system via transfer learning on a pre-trained YOLO model with a custom dataset, integrating a real-time CV pipeline with a GUI to automate item identification and transactions.</p>
-          <div class="tags"><span>YOLO</span><span>Computer Vision</span><span>Transfer Learning</span><span>GUI</span></div>
+          <div class="proj-visual">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--accent-2)"/></linearGradient></defs>
+              <rect width="400" height="150" fill="url(#pg2)" opacity="0.1"/>
+              <g stroke="url(#pg2)" stroke-width="3" fill="none" stroke-linecap="round">
+                <path d="M40 42 L40 20 L62 20"/>
+                <path d="M360 42 L360 20 L338 20"/>
+                <path d="M40 108 L40 130 L62 130"/>
+                <path d="M360 108 L360 130 L338 130"/>
+              </g>
+              <rect x="150" y="45" width="100" height="60" rx="8" fill="none" stroke="url(#pg2)" stroke-width="2" stroke-dasharray="6 5"/>
+              <rect x="172" y="62" width="56" height="30" rx="4" fill="url(#pg2)" opacity=".5"/>
+              <circle cx="252" cy="47" r="10" fill="var(--surface)" stroke="url(#pg2)" stroke-width="2"/>
+              <path d="M247 47 l3.5 3.5 l7 -8" stroke="url(#pg2)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="proj-body">
+            <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M12 12v3"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></div>
+            <h3>Camera-Based Automated Billing</h3>
+            <p>An automated visual-checkout system via transfer learning on a pre-trained YOLO model with a custom dataset, integrating a real-time CV pipeline with a GUI to automate item identification and transactions.</p>
+            <div class="tags"><span>YOLO</span><span>Computer Vision</span><span>Transfer Learning</span><span>GUI</span></div>
+            <a class="proj-link" href="https://github.com/Subhamkonar84/flipkart_grid6_robotics" target="_blank" rel="noopener">
+              View Code on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
         </div>
 
         <div class="proj-card reveal">
-          <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 8l10 6 10-6-10-6Z"/><path d="m2 16 10 6 10-6M2 12l10 6 10-6"/></svg></div>
-          <h3>House Rent Price Prediction</h3>
-          <p>A real-estate price-prediction engine using regression on historical data to estimate values from location and size — deployed as a web app with an interactive geospatial heat map of pricing trends.</p>
-          <div class="tags"><span>Regression</span><span>Geospatial Viz</span><span>Web App</span></div>
+          <div class="proj-visual">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--accent-2)"/></linearGradient></defs>
+              <rect width="400" height="150" fill="url(#pg3)" opacity="0.1"/>
+              <g fill="url(#pg3)">
+                <circle cx="40" cy="40" r="3" opacity=".4"/><circle cx="70" cy="60" r="5" opacity=".6"/>
+                <circle cx="100" cy="35" r="3" opacity=".3"/><circle cx="130" cy="70" r="7" opacity=".7"/>
+                <circle cx="160" cy="45" r="4" opacity=".4"/><circle cx="200" cy="82" r="9" opacity=".8"/>
+                <circle cx="230" cy="50" r="4" opacity=".4"/><circle cx="260" cy="65" r="6" opacity=".55"/>
+                <circle cx="300" cy="40" r="3" opacity=".3"/><circle cx="330" cy="70" r="5" opacity=".5"/>
+              </g>
+              <path d="M30 112 L90 97 L150 102 L210 77 L270 87 L340 57" stroke="url(#pg3)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="340" cy="57" r="5" fill="var(--bg)" stroke="url(#pg3)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="proj-body">
+            <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 8l10 6 10-6-10-6Z"/><path d="m2 16 10 6 10-6M2 12l10 6 10-6"/></svg></div>
+            <h3>House Rent Price Prediction</h3>
+            <p>A real-estate price-prediction engine using regression on historical data to estimate values from location and size — deployed as a web app with an interactive geospatial heat map of pricing trends.</p>
+            <div class="tags"><span>Regression</span><span>Geospatial Viz</span><span>Web App</span></div>
+          </div>
         </div>
 
       </div>
@@ -632,15 +710,24 @@
         <div class="cert-list reveal">
           <div class="cert-item">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div><h4>Google Data Analytics</h4><p>Data cleaning, exploration, visualization, and analysis.</p></div>
+            <div>
+              <h4><a class="cert-link" href="https://www.coursera.org/account/accomplishments/specialization/CZVUBN6EBK72" target="_blank" rel="noopener">Google Data Analytics<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M7 7h10v10"/></svg></a></h4>
+              <p>Data cleaning, exploration, visualization, and analysis.</p>
+            </div>
           </div>
           <div class="cert-item">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div><h4>Microsoft Azure AI Fundamentals</h4><p>AI workloads, computer vision, NLP, and generative AI.</p></div>
+            <div>
+              <h4><a class="cert-link" href="https://www.linkedin.com/in/subham-ranjan-konar/details/certifications/1705412744496/single-media-viewer/?profileId=ACoAADIpHPcBwAacxMYtws1v-Ol61omvnAIThcU" target="_blank" rel="noopener">Microsoft Azure AI Fundamentals<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M7 7h10v10"/></svg></a></h4>
+              <p>AI workloads, computer vision, NLP, and generative AI.</p>
+            </div>
           </div>
           <div class="cert-item">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <div><h4>Google Cybersecurity</h4><p>Risk management, network security, Linux &amp; SQL, threat detection, Python scripting.</p></div>
+            <div>
+              <h4><a class="cert-link" href="https://www.coursera.org/account/accomplishments/specialization/K8D4UQUJ6YB2" target="_blank" rel="noopener">Google Cybersecurity<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M7 7h10v10"/></svg></a></h4>
+              <p>Risk management, network security, Linux &amp; SQL, threat detection, Python scripting.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -658,7 +745,7 @@
         <div class="ach-card reveal">
           <h4><span class="dot"></span>Achievements</h4>
           <ul>
-            <li>Published research: <b>"Revolutionizing Retail: Automated Grocery Billing and Verification via YOLO-v7."</b></li>
+            <li>Published research: <a href="https://link.springer.com/chapter/10.1007/978-3-032-05373-2_25" target="_blank" rel="noopener"><b>"Revolutionizing Retail: Automated Grocery Billing and Verification via YOLO-v7."</b></a></li>
             <li>Hosted <b>Google Agentic AI Day</b> — a Guinness World Record event — and the <b>Google Gen AI Exchange Hackathon</b>.</li>
             <li><b>Finalist</b>, Flipkart GRiD 6.0; shortlisted at EY and TVS Credit hackathons.</li>
             <li>Competed in Accenture, IEEE Xtreme, and IBM hackathons.</li>
