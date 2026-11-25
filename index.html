@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name — Profile</title>
+    <meta name="description" content="Personal profile of Your Name" />
+    <style>
+        :root {
+            --bg: #0f1115;
+            --card: #171a21;
+            --text: #e6e8ec;
+            --muted: #9aa3b2;
+            --accent: #6ea8fe;
+            --border: #262b36;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f6f7f9;
+                --card: #ffffff;
+                --text: #1b1f27;
+                --muted: #5b6474;
+                --accent: #2f6fde;
+                --border: #e3e6eb;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+
+        header {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            object-fit: cover;
+            background: var(--card);
+        }
+
+        h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .loc {
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--text);
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: .92rem;
+        }
+
+        .links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        section {
+            margin-top: 48px;
+        }
+
+        h2 {
+            font-size: .8rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skills span {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: .9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: .92rem;
+        }
+
+        .item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .item .when {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .item p {
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        footer {
+            margin-top: 64px;
+            color: var(--muted);
+            font-size: .85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+        <header>
+            <!-- Uses your GitHub avatar automatically: replace "your-username" -->
+            <img class="avatar" src="https://github.com/your-username.png" alt="Your Name" />
+            <div>
+                <h1>Your Name</h1>
+                <div class="role">Software Developer</div>
+                <div class="loc">📍 Your City, Country</div>
+            </div>
+        </header>
+
+        <div class="links">
+            <a href="https://github.com/your-username">GitHub</a>
+            <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+            <a href="mailto:you@example.com">Email</a>
+            <a href="resume.pdf">Résumé</a>
+        </div>
+
+        <section>
+            <h2>About</h2>
+            <p>
+                Hi! I'm Your Name. Write two or three sentences about yourself here — what you do,
+                what you're interested in, and what you're currently working on or looking for.
+            </p>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <div class="skills">
+                <span>JavaScript</span><span>Python</span><span>React</span>
+                <span>Node.js</span><span>SQL</span><span>Git</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="grid">
+                <a class="card" href="https://github.com/your-username/project-one">
+                    <h3>Project One</h3>
+                    <p>One line on what it does and the tech it uses.</p>
+                </a>
+                <a class="card" href="https://github.com/your-username/project-two">
+                    <h3>Project Two</h3>
+                    <p>One line on what it does and the tech it uses.</p>
+                </a>
+                <a class="card" href="https://github.com/your-username/project-three">
+                    <h3>Project Three</h3>
+                    <p>One line on what it does and the tech it uses.</p>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+            <div class="item">
+                <div class="top"><strong>Job Title · Company</strong><span class="when">2024 — Present</span></div>
+                <p>What you worked on and achieved.</p>
+            </div>
+            <div class="item">
+                <div class="top"><strong>Degree · University</strong><span class="when">2020 — 2024</span></div>
+                <p>Focus area or notable coursework.</p>
+            </div>
+        </section>
+
+        <footer>© <span id="y"></span> Your Name · Hosted on GitHub Pages</footer>
+    </div>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
